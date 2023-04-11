@@ -40,15 +40,15 @@ const userResgister = async (details, role, res) => {
                     success: true
                 })
 
-            } else if (role === "SuperAdmin") {
+            } else if (role === "SubscribedUser") {
                 return res.status(200).json({
-                    message: "Super Admin is Created Successfully",
+                    message: "SubscribedUser is Created Successfully",
                     success: true
                 })
-            } else if (role === "seller") {
+            } else if (role === "user") {
 
                 return res.status(200).json({
-                    message: "Seller is Created Successfully",
+                    message: "User is Created Successfully",
                     success: true
                 })
             }

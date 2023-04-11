@@ -9,44 +9,43 @@ const {
 /* ...Details
     User Registration
     Admin Registration
-    Super Admin Registeration 
+    SubscribedUser Registeration 
 
     User Login
     Admin Login
-    Super Admin Login 
+    SubscribedUser Login 
 
     User Protected Route
     Admin Protected Route
-    Super Admin Protected Route
+    SubscribedUser Protected Route
 
 
 */
 
 //Register routes
 router.post('/register-user', async (req, res) => {
-    await userResgister(req.body, 'seller', res)
+    await userResgister(req.body, 'user', res)
 })
 
 router.post('/register-admin', async (req, res) => {
     await userResgister(req.body, 'admin', res)
 })
 
-router.post('/register-super-admin', async (req, res) => {
-    await userResgister(req.body, 'SuperAdmin', res)
+router.post('/register-subscribed-user', async (req, res) => {
+    await userResgister(req.body, 'SubscribedUser', res)
 })
-
 
 //Login Routes
 router.post('/login-user', async (req, res) => {
-    await userLogin(req.body, "seller", res)
+    await userLogin(req.body, "user", res)
 })
 
 router.post('/login-admin', async (req, res) => {
     await userLogin(req.body, "admin", res)
 })
 
-router.post('/login-super-admin', async (req, res) => {
-    await userLogin(req.body, "SuperAdmin", res)
+router.post('/login-subscribed-user', async (req, res) => {
+    await userLogin(req.body, "SubscribedUser", res)
 })
 
 router.get("/profile", userAuth, async (req, res) => {
@@ -56,8 +55,8 @@ router.get("/profile", userAuth, async (req, res) => {
 })
 
 //Protected Route
-router.get('/seller-route',userAuth, checkRole(["seller"]), async (req, res) => {
-    return res.json("Welcome Seller")
+router.get('/user-route',userAuth, checkRole(["user"]), async (req, res) => {
+    return res.json("Welcome user")
  
 })
 
@@ -66,13 +65,13 @@ router.get('/admin-route', userAuth, checkRole(['admin']), async (req, res) => {
 })
 
 
-router.get('/super-admin-route', userAuth, checkRole(['SuperAdmin']), async (req, res) => {
-    return res.json("Welcome Super Admin Page")
+router.get('/subscribed-user-route', userAuth, checkRole(['SubscribedUser']), async (req, res) => {
+    return res.json("Welcome SubscribedUser Page")
 
 
 })
 
-router.get('/super-admin-and-admin-route',userAuth, checkRole(['SuperAdmin','admin']), async (req, res) => {
+router.get('/super-admin-and-admin-route',userAuth, checkRole(['SubscribedUser','admin']), async (req, res) => {
     return res.json(serializeUser(req.user))
 })
 

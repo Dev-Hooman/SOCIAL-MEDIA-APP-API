@@ -5,14 +5,23 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
+    photoUrl: String,
+    followers: {
+        type: Array,
+        default: []
+    },
+    followings: {
+        type: Array,
+        default: []
+    },
     email: {
         type: String,
         required: true,
     },
     role: {
         type: String,
-        default: "customer",
-        enum: ["seller", "admin", "SuperAdmin"]
+        default: "user",
+        enum: ["user", "admin", "SubscribedUser"]
     },
     username: {
         type: String,
@@ -22,7 +31,8 @@ const UserSchema = new Schema({
     password: {
         type: String,
         required: true,
-    }
+    },
+
 
 }, { timestamps: true })
 
